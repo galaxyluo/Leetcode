@@ -2,27 +2,29 @@
 using namespace std;
 class Solution {
 public:
-    void quickSort(vector<int>& nums) {
-        partition(0, nums.size() - 1, nums);
-    }
-    void partition(int l, int r, vector<int>& nums) {
-        if (l >= r)
+    void quickSort(int left, int right, vector<int>& nums) {
+        if (left >= right || left < 0 || right >= nums.size())
             return;
-        int i = l, j = r;
-        int pivot = nums[l];
+        int i = left, j = right, pivot = nums[left];
         while (i < j) {
-            while (i < j && nums[j] >= pivot)
+            while (i < j && nums[j] <= pivot) {
                 j--;
-            while (i < j && nums[i] <= pivot)
+            }
+            while (i < j && nums[i] >= pivot) {
                 i++;
-            if (i < j)
-                swap(nums[i], nums[j]);
+            }
+            if (i < j) {
+                nums[i] = nums[i] + nums[j];
+                nums[j] = nums[i] - nums[j];
+                nums[i] = nums[i] - nums[j];
+            }
         }
-        nums[l] = nums[i];
+        nums[left] = nums[i];
         nums[i] = pivot;
-        partition(l, i - 1, nums);
-        partition(i + 1, r, nums);
+        quickSort(left, i - 1, nums);
+        quickSort(i + 1, right, nums);
     }
+
     void mergeSort(vector<int>& nums) {
         vector<int> tmp(nums.size());
         merge(nums, tmp, 0, nums.size() - 1);
@@ -50,7 +52,7 @@ public:
 int main() {
     vector<int> nums = {1, 56, 23, 6, 67, 8456, 34, 85, 10};
     Solution s;
-    s.mergeSort(nums);
+    s.quickSort(0, nums.size() - 1, nums);
     for (int &num: nums)
         cout << num << ' ';
     return 0;
