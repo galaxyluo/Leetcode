@@ -1,16 +1,4 @@
-#include <iostream>
-#include <cstdio>
-#include <fstream>
-#include <algorithm>
-#include <cmath>
-#include <deque>
-#include <vector>
-#include <queue>
-#include <string>
-#include <cstring>
-#include <unordered_map>
-#include <stack>
-#include <set> 
+#include <bits/stdc++.h>
 using namespace std;
 struct TreeNode {
     int val;
@@ -36,7 +24,3 @@ public:
             return (dfs(l->left, r->right) && dfs(l->right, r->left));
     }
 };
-
-int main() {
-
-}

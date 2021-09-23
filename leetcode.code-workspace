@@ -14,7 +14,8 @@
 			"algorithm": "cpp",
 			"cmath": "cpp",
 			"ostream": "cpp",
-			"regex": "cpp"
+			"regex": "cpp",
+			"iostream": "cpp"
 		}
 	}
 }
